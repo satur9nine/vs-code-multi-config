@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "all",
+                "-j10"
+            ]
+        },
+        {
+            "label": "Clean",
+            "group": "build",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

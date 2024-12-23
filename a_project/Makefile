@@ -39,7 +39,7 @@ build: all
 
 # Task producing target from object files
 $(TARGET): $(OBJS)
-	@echo "🚧 Linking..."
+	@echo "🛠️ Linking..."
 	@mkdir -p $(dir $@)
 	$(CC) $(OBJS) -o $@ $(LDPATHS) $(LDFLAGS)
 	@echo
@@ -47,10 +47,8 @@ $(TARGET): $(OBJS)
 # Template to create rules using two parameters: object and source
 define OBJ_RULE
 $(1): $(2)
-	@echo "🛠️ Compiling..."
 	@mkdir -p $(dir $1)
 	$(CC) $(C_FLAGS) $(PRE_FLAGS) $(INC_FLAGS) -c -o $1 $2 $(LDPATHS) $(LDFLAGS)
-	@echo
 endef
 
 # Generate object build rules using the template, necessary because of the custom mapping
