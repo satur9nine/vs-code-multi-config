@@ -2,7 +2,7 @@
 .SUFFIXES :
 
 # Pre-compiler and Compiler flags
-C_FLAGS := -std=c11 -DA_PROJECT
+C_FLAGS := -std=c11 -g3 -DA_PROJECT
 PRE_FLAGS := -MMD -MP
 
 # Project directory structure

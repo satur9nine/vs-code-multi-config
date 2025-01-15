@@ -1,0 +1,36 @@
+{
+    "folders": [
+        {
+            "name": "a_project",
+            "path": "."
+        },
+        {
+            "name": "common",
+            "path": "../common"
+        }
+    ],
+    "settings": {
+        "C_Cpp.default.includePath": [
+            "${workspaceFolder:a_project}/inc",
+            "${workspaceFolder:common}/inc"
+        ],
+        "C_Cpp.default.defines": [
+            "A_PROJECT"
+        ],
+        "C_Cpp.default.compilerPath": "/usr/bin/clang",
+        "C_Cpp.default.cStandard": "c11",
+        "C_Cpp.default.cppStandard": "c++17",
+        "C_Cpp.default.intelliSenseMode": "clang-x64",
+
+        "files.associations": {
+            "*.h": "c"
+        },
+        // FIXME: Exclude file path applies to all roots, but want it to apply to specific root, dunno how, VS Code bug
+        "files.exclude": {
+            "junkfile.txt": true,
+        },
+        "search.exclude": {
+            "build": true,
+        }
+    },
+}

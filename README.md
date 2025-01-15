@@ -1,21 +1,26 @@
 # VS Code Multiple Configurations Demo
 
-This repo contains two simple C projects that share code. Each project has its own Makefile. The
-main purpose is to provide an example of how to setup VS Code Intellisense with multiple
-configurations so that VS Code is fully aware of the includes and defines of each project and sees
-the shared code but does not see code from other projects.
+This repo contains two simple C projects that share code all within the same repository. Each
+project has its own Makefile. The main purpose is to provide an example of how to setup VS Code
+Intellisense with multiple workspaces so that VS Code is aware of the includes and defines of each
+project and sees the shared code but does not see code from other projects.
 
-Several attempts to get this working were made:
+There are two solutions provided to this problem.
 
-1. A single `c_cpp_properties.json` with multiple configurations: this failed because there is no
-   way to exclude files per configuration so Intellisense processes all C source files for all
-   configurations.
-1. Multiple workspaces with each workspace utilizing the multi-root feature to include the project
-   files and the common files: this failed because there isn't a way to place one
-   `c_cpp_properties.json` for each workspace that applies to all roots. In this project the result
-   was that when editing common.c and common.h VS Code just used a default Intellisense
-   configuration. Creating a configuration at `common/.vscode/c_cpp_properties.json` caused VS Code
-   to use when editing files in `common` but that configuration won't be project specific so this
-   ultimately doesn't work.
-1. Multiple workspaces and symlinks in each workspace root to common code: this setup succeeds in
-   meeting the goals!
+Project A:
+
+- By utilizing multiple-root workspaces feature of VS Code we create an `a_project.code-workspace`
+  file that also contains the intellisense configuration for the project. This has a downside that
+  excluding files in VS Code can only be done to all roots simultaneously (see workspace file).
+
+Project B:
+
+- By placing a symlink to common within b_project we can treat `b_project` as a workspace root and
+  VS Code is able to access all necessary code and we can configure intellisense for project B in
+  the `b_project/.vscode` directory. This has the downside of not working by default on Windows, but
+  using `git clone -c core.symlinks=true ...` should allow it to function but there may also be
+  negative side-effects because there are multiple paths to the same file (directly and via
+  symlink).
+
+The Makefile included in each project also employes an interesting strategy to find C files in
+specified directories and re-map them to a build output directory.

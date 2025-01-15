@@ -1,0 +1,2 @@
+Junk Junk Junk
+This file should be excluded from VS Code!

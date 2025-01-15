@@ -1,5 +1,11 @@
 {
     "files.associations": {
         "*.h": "c"
+    },
+    "files.exclude": {
+        "common/junkfile.txt": true,
+    },
+    "search.exclude": {
+        "build": true,
     }
 }
